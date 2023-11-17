@@ -8,7 +8,11 @@ WORKDIR /CPT
 COPY . /CPT
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add build-base
+RUN apk add libcap-dev
+RUN pip install --no-cache-dir -r requirements.txt 
+RUN cp -r /CPT/nltk_data /root
+
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
