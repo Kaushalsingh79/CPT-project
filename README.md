@@ -19,11 +19,11 @@ To get started with Cloud autoMate, follow these steps:
 
 1. Clone the project repository: [GitHub Repository](https://github.com/Kaushalsingh79/CPT-project)
 
-2. Set up your Azure credentials and any necessary configurations.
-
-3. Run the project on your server.
-
-4. Access the web app to start deploying cloud resources with ease.
+2. Unzip the project if required
+3. Navigate to the project directory
+4. When in the project directory run the command 'pip install -r requirements.txt' to install all the dependencies
+5. now run 'uwsgi --ini uwsgi.ini' to run your server 
+6. Access the web app to start deploying cloud resources with ease.
 
 ## Contribution
 
