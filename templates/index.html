@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Application</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
@@ -32,6 +34,7 @@
             width: 100%;
             padding: 10px;
             border: none;
+            justify-content: center;
             border-top: 1px solid #ccc;
             font-size: 16px;
         }
@@ -44,6 +47,15 @@
             border: none;
             cursor: pointer;
         }
+        #close-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -51,6 +63,7 @@
         <div id="chat-box"></div>
         <input type="text" id="user-input" placeholder="Type your message..." onkeydown="handleKeyDown(event)">
         <button id="send-button" onclick="sendMessage()">Send</button>
+        <button id="close-button" onclick="closeSession()">Close Session</button>
     </div>
 
     <script>
@@ -74,7 +87,10 @@
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    appendMessage(data.bot_message);
+                    // Append each bot message to the chat box
+                    data.bot_messages.forEach((botMessage) => {
+                        appendMessage("Bot: " + botMessage);
+                    });
                 });
 
             document.getElementById("user-input").value = "";
@@ -85,6 +101,24 @@
                 sendMessage();
             }
         }
+
+        function closeSession() {
+    // Send close session request to the server
+    fetch("/close-session", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.message);
+            // Redirect to the closed.html page
+            window.location.href = "/close.html";
+        });
+}
+
+
     </script>
 </body>
 </html>
