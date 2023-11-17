@@ -21,8 +21,8 @@ To get started with Cloud autoMate, follow these steps:
 
 2. Unzip the project if required
 3. Navigate to the project directory
-4. When in the project directory run the command 'pip install -r requirements.txt' to install all the dependencies
-5. now run 'uwsgi --ini uwsgi.ini' to run your server 
+4. When in the project directory run the command 'sudo docker compose build'
+5. now run 'docker compose up' to run your server 
 6. Access the web app to start deploying cloud resources with ease.
 
 ## Contribution
